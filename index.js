@@ -8,13 +8,18 @@ const PORT = process.env.PORT || 4002;
 
 // CORS configuration
 if (process.env.NODE_ENV === 'production') {
-  app.use(cors()); // Allow all origins in production (adjust as needed)
+  app.use(cors({
+    origin: 'https://streamverse-frontend-v0.onrender.com',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control'],
+    credentials: true
+  }));
 } else {
   app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control'],
-    credentials: false
+    credentials: true
   }));
 }
 
